@@ -1,0 +1,66 @@
+{
+  "name": "logging-setup",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Configurable logger based on Pino with multiple output destinations",
+  "keywords": [
+    "logger",
+    "pino",
+    "log",
+    "logging",
+    "typescript"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "simple-git-hooks",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build",
+    "release": "bumpp && npm publish",
+    "example:basic": "tsx examples/basic.ts",
+    "example:advanced": "tsx examples/advanced.ts"
+  },
+  "dependencies": {
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "pino-roll": "^3.0.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.3.0",
+    "@types/node": "^22.13.1",
+    "bumpp": "^10.0.3",
+    "eslint": "^9.20.1",
+    "eslint-plugin-format": "^1.0.1",
+    "lint-staged": "^15.4.3",
+    "pathe": "^2.0.3",
+    "simple-git-hooks": "^2.11.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "unbuild": "^3.5.0",
+    "vitest": "^3.0.7"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,md}": [
+      "eslint --fix"
+    ]
+  }
+}
